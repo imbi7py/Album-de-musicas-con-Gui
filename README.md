@@ -1,2 +1,3 @@
-# Album-de-musicas-con-Gui
-Crud con base de datos MySQL y Pyqt5.
+# Album de musicas
+> Esto es una interfaz grafica con PyQt5 + db MySQL y Python
+> no se que mas poner gracias :v
