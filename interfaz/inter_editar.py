@@ -1,7 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys
 sys.path.append('..')
-sys.path.append('..')
 from db_conectar.Conectordb import Conexion
 from css.estilos import Estilos
 import pymysql
@@ -20,100 +19,108 @@ class Editorxd:
         Editor.resize(752, 314)
         Editor.setMinimumSize(QtCore.QSize(752, 314))
         Editor.setMaximumSize(QtCore.QSize(752, 314))
+        self.adaptador = QtWidgets.QWidget(Editor)
+        self.adaptador.setObjectName("adaptador")
+        #Logo
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../imagenes/HaYC9-S7.ico"))#, QtGui.QIcon.Normal, QtGui.QIcon.Offb
+        icon.addPixmap(QtGui.QPixmap("../imagenes/HaYC9-S7.ico"))
         Editor.setWindowIcon(icon)
-        #Esto va en otro archivo
+        #Estilos de la ventana
         css = Estilos()
         css.estilo_editar(Editor)
-        #Esto va en otro archivo
-        self.centralwidget = QtWidgets.QWidget(Editor)
-        self.centralwidget.setObjectName("centralwidget")
-        self.tabla_db = QtWidgets.QTableWidget(self.centralwidget)
+        #Tabla que se conecta de manera directa con mysql
+        self.tabla_db = QtWidgets.QTableWidget(self.adaptador)
         self.tabla_db.setGeometry(QtCore.QRect(10, 110, 511, 192))
         self.tabla_db.setObjectName("tabla_db")
         self.tabla_db.setColumnCount(5)
         self.tabla_db.setRowCount(0)
         item = QtWidgets.QTableWidgetItem()
         self.tabla_db.setHorizontalHeaderItem(0, item)
-        item = QtWidgets.QTableWidgetItem()
         self.tabla_db.setHorizontalHeaderItem(1, item)
-        item = QtWidgets.QTableWidgetItem()
         self.tabla_db.setHorizontalHeaderItem(2, item)
-        item = QtWidgets.QTableWidgetItem()
         self.tabla_db.setHorizontalHeaderItem(3, item)
-        item = QtWidgets.QTableWidgetItem()
-        #
+        self.tabla_db.setHorizontalHeaderItem(4, item)
+        #conexion con mysql y la tabla de pyqt5
         self.buscar()
         conectarx = Conexion()
         conectarx.conectar(self.datos,self.tabla_db)     
-        #
-        self.tabla_db.setHorizontalHeaderItem(4, item)
-        self.btn_buscar = QtWidgets.QPushButton(self.centralwidget)
+        #boton de busqueda
+        self.btn_buscar = QtWidgets.QPushButton(self.adaptador)
         self.btn_buscar.setGeometry(QtCore.QRect(230, 60, 75, 31))
         self.btn_buscar.setObjectName("btn_buscar")
-        self.horizontalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
-        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(50, 10, 431, 51))
-        self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
-        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
-        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        self.escr_buscar = QtWidgets.QLineEdit(self.horizontalLayoutWidget)
+        #Contenedores
+        self.contenedor = QtWidgets.QWidget(self.adaptador)
+        self.contenedor.setGeometry(QtCore.QRect(50, 10, 431, 51))
+        self.contenedor.setObjectName("contenedor")
+        self.contenedor2 = QtWidgets.QHBoxLayout(self.contenedor)
+        self.contenedor2.setContentsMargins(0, 0, 0, 0)
+        self.contenedor2.setObjectName("contenedor2")
+        #Linea de busqueda
+        self.escr_buscar = QtWidgets.QLineEdit(self.contenedor)
         self.escr_buscar.setObjectName("escr_buscar")
-        self.horizontalLayout_2.addWidget(self.escr_buscar)
-        self.cbox_buscar_por = QtWidgets.QComboBox(self.horizontalLayoutWidget)
+        self.contenedor2.addWidget(self.escr_buscar)
+        #Caja de busqueda
+        self.cbox_buscar_por = QtWidgets.QComboBox(self.contenedor)
         self.cbox_buscar_por.setObjectName("cbox_buscar_por")
         self.cbox_buscar_por.addItem("")
         self.cbox_buscar_por.addItem("")
         self.cbox_buscar_por.addItem("")
-        self.horizontalLayout_2.addWidget(self.cbox_buscar_por)
-        self.edt_nombre = QtWidgets.QLineEdit(self.centralwidget)
+        self.contenedor2.addWidget(self.cbox_buscar_por)
+        #Linea para editar el nombre
+        self.edt_nombre = QtWidgets.QLineEdit(self.adaptador)
         self.edt_nombre.setGeometry(QtCore.QRect(540, 20, 201, 31))
         self.edt_nombre.setObjectName("edt_nombre")
-        self.edt_autor = QtWidgets.QLineEdit(self.centralwidget)
+        #Linea para editar el autor
+        self.edt_autor = QtWidgets.QLineEdit(self.adaptador)
         self.edt_autor.setGeometry(QtCore.QRect(540, 70, 201, 31))
         self.edt_autor.setObjectName("edt_autor")
-        self.edt_genero = QtWidgets.QLineEdit(self.centralwidget)
+        #Linea para editar el genero
+        self.edt_genero = QtWidgets.QLineEdit(self.adaptador)
         self.edt_genero.setGeometry(QtCore.QRect(540, 120, 201, 31))
         self.edt_genero.setObjectName("edt_genero")
-        self.edt_ano = QtWidgets.QLineEdit(self.centralwidget)
+        #Linea para editar el año
+        self.edt_ano = QtWidgets.QLineEdit(self.adaptador)
         self.edt_ano.setGeometry(QtCore.QRect(540, 170, 201, 31))
         self.edt_ano.setObjectName("edt_ano")
-        self.editar_duracion = QtWidgets.QLineEdit(self.centralwidget)
+        #Linea para editar la duracion de la musica
+        self.editar_duracion = QtWidgets.QLineEdit(self.adaptador)
         self.editar_duracion.setGeometry(QtCore.QRect(540, 220, 201, 31))
         self.editar_duracion.setObjectName("editar_duracion")
-        self.btn_guardar_editado = QtWidgets.QPushButton(self.centralwidget)
+        #Boton para guardar cambios
+        self.btn_guardar_editado = QtWidgets.QPushButton(self.adaptador)
         self.btn_guardar_editado.setGeometry(QtCore.QRect(600, 270, 81, 31))
         self.btn_guardar_editado.setObjectName("btn_guardar_editado")
         self.btn_guardar_editado.clicked.connect(self.editar)
-        Editor.setCentralWidget(self.centralwidget)
+        #variado
+        Editor.setCentralWidget(self.adaptador)
         self.texto_transparente(Editor)
         QtCore.QMetaObject.connectSlotsByName(Editor)
 
     def texto_transparente(self, Editor):
-        _translate = QtCore.QCoreApplication.translate
-        Editor.setWindowTitle(_translate("Editor", "Editar musica"))
+        nombresxd = QtCore.QCoreApplication.translate
+        Editor.setWindowTitle(nombresxd("Editor", "Editar musica"))
         item = self.tabla_db.horizontalHeaderItem(0)
-        item.setText(_translate("Editor", "Nombre"))
+        item.setText(nombresxd("Editor", "Nombre"))
         item = self.tabla_db.horizontalHeaderItem(1)
-        item.setText(_translate("Editor", "Autor"))
+        item.setText(nombresxd("Editor", "Autor"))
         item = self.tabla_db.horizontalHeaderItem(2)
-        item.setText(_translate("Editor", "Genero"))
+        item.setText(nombresxd("Editor", "Genero"))
         item = self.tabla_db.horizontalHeaderItem(3)
-        item.setText(_translate("Editor", "Año"))
+        item.setText(nombresxd("Editor", "Año"))
         item = self.tabla_db.horizontalHeaderItem(4)
-        item.setText(_translate("Editor", "Duracion"))
-        self.btn_buscar.setText(_translate("Editor", "Buscar"))
-        self.escr_buscar.setPlaceholderText(_translate("Editor", "Buscar"))
-        self.cbox_buscar_por.setItemText(0, _translate("Editor", "Nombre "))
-        self.cbox_buscar_por.setItemText(1, _translate("Editor", "Autor"))
-        self.cbox_buscar_por.setItemText(2, _translate("Editor", "Genero"))
-        self.edt_nombre.setPlaceholderText(_translate("Editor", "Editar nombre"))
-        self.edt_autor.setPlaceholderText(_translate("Editor", "Editar autor"))
-        self.edt_genero.setPlaceholderText(_translate("Editor", "Editar genero"))
-        self.edt_ano.setPlaceholderText(_translate("Editor", "Editar año"))
-        self.editar_duracion.setPlaceholderText(_translate("Editor", "Editar duracion"))
-        self.btn_guardar_editado.setText(_translate("Editor", "Editar"))
+        item.setText(nombresxd("Editor", "Duracion"))
+        #Aqui estan palabras predefinidas la cual se van a cambiar al momento de escribi dentro de ellas :V
+        self.btn_buscar.setText(nombresxd("Editor", "Buscar"))
+        self.escr_buscar.setPlaceholderText(nombresxd("Editor", "Buscar"))
+        self.cbox_buscar_por.setItemText(0, nombresxd("Editor", "Nombre "))
+        self.cbox_buscar_por.setItemText(1, nombresxd("Editor", "Autor"))
+        self.cbox_buscar_por.setItemText(2, nombresxd("Editor", "Genero"))
+        self.edt_nombre.setPlaceholderText(nombresxd("Editor", "Editar nombre"))
+        self.edt_autor.setPlaceholderText(nombresxd("Editor", "Editar autor"))
+        self.edt_genero.setPlaceholderText(nombresxd("Editor", "Editar genero"))
+        self.edt_ano.setPlaceholderText(nombresxd("Editor", "Editar año"))
+        self.editar_duracion.setPlaceholderText(nombresxd("Editor", "Editar duracion"))
+        self.btn_guardar_editado.setText(nombresxd("Editor", "Editar"))
 
     def buscar(self):
         buscar = Conexion()
