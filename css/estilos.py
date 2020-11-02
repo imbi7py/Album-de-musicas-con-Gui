@@ -149,7 +149,6 @@ class Estilos:
 "}\n"
 "QPushButton:hover {\n"
 "font-size: 15px;\n"
-"transition: 0.10s;\n"
 "font-weight: bold;\n"
 "border: 1.5px solid #e76768;\n"
 "}\n"
