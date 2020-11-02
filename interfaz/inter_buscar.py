@@ -1,10 +1,11 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys
-sys.path.insert(0, '../conectordb')
-sys.path.insert(0, '../css')
-from Conectordb import Conexion
-from estilos import Estilos
+sys.path.append('..')
+sys.path.append('..')
+from db_conectar.Conectordb import Conexion
+from css.estilos import Estilos
 import pymysql 
+#import sys
 
 class Buscadorxd:
     def __init__(self, Buscador):

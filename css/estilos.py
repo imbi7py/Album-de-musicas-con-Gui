@@ -1,4 +1,4 @@
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtGui
 
 class Estilos:
 
@@ -279,18 +279,17 @@ class Estilos:
 	def estilo_index(self,index):
 		albun_musica = index
 		albun_musica.setStyleSheet("QMainWindow{\n"
-"    background: #20252b;\n"
+"background: #20252b;\n"
 "}\n"
-"QPushButton {\n"
+"QPushButton{\n"
 "border-radius: 7px; \n"
 "border: 1.5px solid #699ec6;\n"
-"background-color: #343d46;\n"
+"background: #343d46;\n"
 "color: #f9b052;\n"
 "font-size: 12px;\n"
 "}\n"
 "QPushButton:hover {\n"
 "font-size: 15px;\n"
-"transition: 0.10s;\n"
 "font-weight: bold; \n"
 "border: 1.5px solid #e76768;\n"
 "}")
