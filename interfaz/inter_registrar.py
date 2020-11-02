@@ -19,8 +19,6 @@ class Pantalla_registroxd:
         Pantalla_registro.resize(322, 361)
         Pantalla_registro.setMinimumSize(QtCore.QSize(322, 361))
         Pantalla_registro.setMaximumSize(QtCore.QSize(322, 361))
-        self.pantalla = QtWidgets.QWidget(Pantalla_registro)
-        self.pantalla.setObjectName("pantalla")
         #logo
         icono = QtGui.QIcon()
         icono.addPixmap(QtGui.QPixmap("../imagenes/HaYC9-S7.ico"))
@@ -29,6 +27,8 @@ class Pantalla_registroxd:
         css = Estilos()
         css.estilo_registro(Pantalla_registro)
         #Linea para escribir el nombre
+        self.pantalla = QtWidgets.QWidget(Pantalla_registro)
+        self.pantalla.setObjectName("pantalla")
         self.ing_nombre = QtWidgets.QLineEdit(self.pantalla)
         self.ing_nombre.setGeometry(QtCore.QRect(40, 40, 241, 31))
         self.ing_nombre.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
@@ -56,6 +56,7 @@ class Pantalla_registroxd:
         self.brn_regitra_datos.setObjectName("brn_regitra_datos")
         self.brn_regitra_datos.clicked.connect(self.registrar)
         Pantalla_registro.setCentralWidget(self.pantalla)
+
         self.texto_transparente(Pantalla_registro)
         QtCore.QMetaObject.connectSlotsByName(Pantalla_registro)
         #Orden por tab
@@ -72,7 +73,7 @@ class Pantalla_registroxd:
         genero = self.ing_genero.text()
         año = self.ing_ano.text()
         duracion = self.ing_duracion.text()
-        alerta = self.mensaje("alerta","Se a registrado los datos")
+        alerta = self.mensaje("Alerta!!","Se registro una musica")
         registro.registrar_datos(nombre_musica,autor,genero,año,duracion,alerta)
 
     def texto_transparente(self, Pantalla_registro):

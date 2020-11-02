@@ -24,7 +24,7 @@ class Eliminadorxd:
         self.centralwidget.setObjectName("centralwidget")      
         #Logo
         icono = QtGui.QIcon()
-        icono.addPixmap(QtGui.QPixmap("../imagenes/HaYC9-S7.ico"))#, QtGui.QIcon.Normal, QtGui.QIcon.Offb
+        icono.addPixmap(QtGui.QPixmap("../imagenes/HaYC9-S7.ico"))
         Eliminador.setWindowIcon(icono)
         #Estilo de la ventana
         css = Estilos()
@@ -35,12 +35,16 @@ class Eliminadorxd:
         self.tabla_db.setObjectName("tabla_db")
         self.tabla_db.setColumnCount(5)
         self.tabla_db.setRowCount(0)
-        item = QtWidgets.QTableWidgetItem()
-        self.tabla_db.setHorizontalHeaderItem(0, item)
-        self.tabla_db.setHorizontalHeaderItem(1, item)
-        self.tabla_db.setHorizontalHeaderItem(2, item)
-        self.tabla_db.setHorizontalHeaderItem(3, item)
-        self.tabla_db.setHorizontalHeaderItem(4, item)
+        item1 = QtWidgets.QTableWidgetItem()
+        self.tabla_db.setHorizontalHeaderItem(0, item1)
+        item2 = QtWidgets.QTableWidgetItem()
+        self.tabla_db.setHorizontalHeaderItem(1, item2)
+        item3 = QtWidgets.QTableWidgetItem()
+        self.tabla_db.setHorizontalHeaderItem(2, item3)
+        item4 = QtWidgets.QTableWidgetItem()
+        self.tabla_db.setHorizontalHeaderItem(3, item4)
+        item5 = QtWidgets.QTableWidgetItem()
+        self.tabla_db.setHorizontalHeaderItem(4, item5)
         #conexion con mysql y la tabla de pyqt5
         self.buscar()
         conectarx = Conexion()

@@ -7,7 +7,7 @@ class Conexion:
         conexion = pymysql.connect(host='localhost',user='root',passwd='J10SK4',db='album')
         try:
             with conexion.cursor() as cursor:
-                slq = ("insert into registro(nombre_musica,autor,genero,año,duracion) values(%s,%s,%s,%s,%s)")
+                slq = ("INSERT INTO registro(nombre_musica,autor,genero,año,duracion) VALUES(%s,%s,%s,%s,%s)")
                 tupla =(nombre_musica,autor,genero,año,duracion)
                 cursor.execute(slq,tupla)
                 if (cursor):
