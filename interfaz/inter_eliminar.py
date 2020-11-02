@@ -1,7 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys
 sys.path.append('..')
-sys.path.append('..')
 from db_conectar.Conectordb import Conexion
 from css.estilos import Estilos
 import pymysql
