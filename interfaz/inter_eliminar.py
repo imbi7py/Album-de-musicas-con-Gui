@@ -21,15 +21,16 @@ class Eliminadorxd:
         Eliminador.resize(534, 314)
         Eliminador.setMinimumSize(QtCore.QSize(534, 314))
         Eliminador.setMaximumSize(QtCore.QSize(534, 314))
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../imagenes/HaYC9-S7.ico"))#, QtGui.QIcon.Normal, QtGui.QIcon.Offb
-        Eliminador.setWindowIcon(icon)
-        #Esto va en otro archivo
+        self.centralwidget = QtWidgets.QWidget(Eliminador)
+        self.centralwidget.setObjectName("centralwidget")      
+        #Logo
+        icono = QtGui.QIcon()
+        icono.addPixmap(QtGui.QPixmap("../imagenes/HaYC9-S7.ico"))#, QtGui.QIcon.Normal, QtGui.QIcon.Offb
+        Eliminador.setWindowIcon(icono)
+        #Estilo de la ventana
         css = Estilos()
         css.estilo_eliminar(Eliminador)
-        #Esto va en otro archivo
-        self.centralwidget = QtWidgets.QWidget(Eliminador)
-        self.centralwidget.setObjectName("centralwidget")
+        #Tabla que se conecta de manera directa con mysql
         self.tabla_db = QtWidgets.QTableWidget(self.centralwidget)
         self.tabla_db.setGeometry(QtCore.QRect(10, 110, 511, 192))
         self.tabla_db.setObjectName("tabla_db")
@@ -37,65 +38,66 @@ class Eliminadorxd:
         self.tabla_db.setRowCount(0)
         item = QtWidgets.QTableWidgetItem()
         self.tabla_db.setHorizontalHeaderItem(0, item)
-        item = QtWidgets.QTableWidgetItem()
         self.tabla_db.setHorizontalHeaderItem(1, item)
-        item = QtWidgets.QTableWidgetItem()
         self.tabla_db.setHorizontalHeaderItem(2, item)
-        item = QtWidgets.QTableWidgetItem()
         self.tabla_db.setHorizontalHeaderItem(3, item)
-        item = QtWidgets.QTableWidgetItem()
-        #
+        self.tabla_db.setHorizontalHeaderItem(4, item)
+        #conexion con mysql y la tabla de pyqt5
         self.buscar()
         conectarx = Conexion()
         conectarx.conectar(self.datos,self.tabla_db)
-        #
-        self.tabla_db.setHorizontalHeaderItem(4, item)
+        #Boton de busqueda
         self.btn_buscar = QtWidgets.QPushButton(self.centralwidget)
         self.btn_buscar.setGeometry(QtCore.QRect(170, 60, 75, 31))
         self.btn_buscar.setObjectName("btn_buscar")
-        self.horizontalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
-        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(50, 10, 431, 51))
-        self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
-        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
-        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        self.escr_buscar = QtWidgets.QLineEdit(self.horizontalLayoutWidget)
+        #contenedor
+        self.contenedor = QtWidgets.QWidget(self.centralwidget)
+        self.contenedor.setGeometry(QtCore.QRect(50, 10, 431, 51))
+        self.contenedor.setObjectName("contenedor")
+        self.contenedor2 = QtWidgets.QHBoxLayout(self.contenedor)
+        self.contenedor2.setContentsMargins(0, 0, 0, 0)
+        self.contenedor2.setObjectName("contenedor2")
+        #Linea para escribir xd
+        self.escr_buscar = QtWidgets.QLineEdit(self.contenedor)
         self.escr_buscar.setObjectName("escr_buscar")
-        self.horizontalLayout_2.addWidget(self.escr_buscar)
-        self.cbox_buscar_por = QtWidgets.QComboBox(self.horizontalLayoutWidget)
+        self.contenedor2.addWidget(self.escr_buscar)
+        #Caja para buscar por: 
+        self.cbox_buscar_por = QtWidgets.QComboBox(self.contenedor)
         self.cbox_buscar_por.setObjectName("cbox_buscar_por")
         self.cbox_buscar_por.addItem("")
         self.cbox_buscar_por.addItem("")
         self.cbox_buscar_por.addItem("")
-        self.horizontalLayout_2.addWidget(self.cbox_buscar_por)
-        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton.setGeometry(QtCore.QRect(280, 60, 81, 31))
-        self.pushButton.setObjectName("pushButton")
+        self.contenedor2.addWidget(self.cbox_buscar_por)
+        #boton de eliminar
+        self.elimina = QtWidgets.QPushButton(self.centralwidget)
+        self.elimina.setGeometry(QtCore.QRect(280, 60, 81, 31))
+        self.elimina.setObjectName("elimina")
         Eliminador.setCentralWidget(self.centralwidget)
-        self.pushButton.clicked.connect(self.eliminar)
+        self.elimina.clicked.connect(self.eliminar)
 
         self.texto_transparente(Eliminador)
         QtCore.QMetaObject.connectSlotsByName(Eliminador)
             
     def texto_transparente(self, Eliminador):
-        _translate = QtCore.QCoreApplication.translate
-        Eliminador.setWindowTitle(_translate("Eliminador", "Eliminar musica"))
+        nombresss = QtCore.QCoreApplication.translate
+        Eliminador.setWindowTitle(nombresss("Eliminador", "Eliminar musica"))
         item = self.tabla_db.horizontalHeaderItem(0)
-        item.setText(_translate("Eliminador", "Nombre"))
+        item.setText(nombresss("Eliminador", "Nombre"))
         item = self.tabla_db.horizontalHeaderItem(1)
-        item.setText(_translate("Eliminador", "Autor"))
+        item.setText(nombresss("Eliminador", "Autor"))
         item = self.tabla_db.horizontalHeaderItem(2)
-        item.setText(_translate("Eliminador", "Genero"))
+        item.setText(nombresss("Eliminador", "Genero"))
         item = self.tabla_db.horizontalHeaderItem(3)
-        item.setText(_translate("Eliminador", "Año"))
+        item.setText(nombresss("Eliminador", "Año"))
         item = self.tabla_db.horizontalHeaderItem(4)
-        item.setText(_translate("Eliminador", "Duracion"))
-        self.btn_buscar.setText(_translate("Eliminador", "Buscar"))
-        self.escr_buscar.setPlaceholderText(_translate("Eliminador", "Buscar"))
-        self.cbox_buscar_por.setItemText(0, _translate("Eliminador", "Nombre "))
-        self.cbox_buscar_por.setItemText(1, _translate("Eliminador", "Autor"))
-        self.cbox_buscar_por.setItemText(2, _translate("Eliminador", "Genero"))
-        self.pushButton.setText(_translate("Eliminador", "Eliminar"))
+        item.setText(nombresss("Eliminador", "Duracion"))
+        #Texto remplazo ?
+        self.btn_buscar.setText(nombresss("Eliminador", "Buscar"))
+        self.escr_buscar.setPlaceholderText(nombresss("Eliminador", "Buscar"))
+        self.cbox_buscar_por.setItemText(0, nombresss("Eliminador", "Nombre "))
+        self.cbox_buscar_por.setItemText(1, nombresss("Eliminador", "Autor"))
+        self.cbox_buscar_por.setItemText(2, nombresss("Eliminador", "Genero"))
+        self.elimina.setText(nombresss("Eliminador", "Eliminar"))
 
     def buscar(self):
     	buscar = Conexion()

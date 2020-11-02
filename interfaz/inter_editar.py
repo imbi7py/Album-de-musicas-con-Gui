@@ -22,9 +22,9 @@ class Editorxd:
         self.adaptador = QtWidgets.QWidget(Editor)
         self.adaptador.setObjectName("adaptador")
         #Logo
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../imagenes/HaYC9-S7.ico"))
-        Editor.setWindowIcon(icon)
+        icono = QtGui.QIcon()
+        icono.addPixmap(QtGui.QPixmap("../imagenes/HaYC9-S7.ico"))
+        Editor.setWindowIcon(icono)
         #Estilos de la ventana
         css = Estilos()
         css.estilo_editar(Editor)
